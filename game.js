@@ -35,13 +35,15 @@ function create() {
 
   platforms = this.physics.add.staticGroup();
 
-  platforms.create(400, 568, "ground").setScale(2).refreshBody();
+  platforms.create(400, 568, 'ground').setScale(2).refreshBody();
 
-  platforms.create(600, 400, "ground");
-  platforms.create(50, 250, "ground");
-  platforms.create(750, 220, "ground");
+  platforms.create(600, 400, 'ground');
+  platforms.create(50, 250, 'ground');
+  platforms.create(750, 220, 'ground');
 } //додає спрайти безпосередньо в гру
 
-function update() { }
+function update() {
+  platforms = this.physics.add.staticGroup(); // Це створює нову групу статичної фізики та призначає її локальним змінним платформам
+}
 
 
