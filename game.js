@@ -66,11 +66,29 @@ function create() {
     frameRate: 10,
     repeat: -1,
   });
-  this.physics.add.collider(player, platforms);
+  this.physics.add.collider(player, platforms); //робить так, щоб наш гравець не падав в текстури
+  cursors = this.input.keyboard.createCursorKeys();
 } //додає спрайти безпосередньо в гру
 
 function update() {
   platforms = this.physics.add.staticGroup(); // Це створює нову групу статичної фізики та призначає її локальним змінним платформам
+  if (cursors.left.isDown) {
+    player.setVelocityX(-160);
+
+    player.anims.play("left", true);
+  } else if (cursors.right.isDown) {
+    player.setVelocityX(160);
+
+    player.anims.play("right", true);
+  } else {
+    player.setVelocityX(0);
+
+    player.anims.play("turn");
+  }
+
+  if (cursors.up.isDown && player.body.touching.down) {
+    player.setVelocityY(-330); //тепер наш гравець ходить
+  }
 }
 
 
