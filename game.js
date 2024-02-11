@@ -19,6 +19,8 @@ var config = {
 var game = new Phaser.Game(config);
 var platforms;
 var player;
+var score = 0;
+var scoreText;
 
 function preload() {
   this.load.image("sky", "assets/sky.png");
@@ -82,7 +84,17 @@ function create() {
   function collectStar(player, star) {
     star.disableBody(true, true);
   }
-} //додає спрайти безпосередньо в гру
+  scoreText = this.add.text(16, 16, "score: 0", {
+    fontSize: "32px",
+    fill: "#000",
+  });
+  function collectStar(player, star) {
+    star.disableBody(true, true);
+
+    score += 10;
+    scoreText.setText("Score: " + score);
+  }
+} //додає спрайти, фізику безпосередньо в гру
 
 function update() {
   platforms = this.physics.add.staticGroup(); // Це створює нову групу статичної фізики та призначає її локальним змінним платформам
@@ -104,5 +116,3 @@ function update() {
     player.setVelocityY(-330); //тепер наш гравець ходить
   }
 }
-
-
