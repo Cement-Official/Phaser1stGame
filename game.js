@@ -34,7 +34,7 @@ function preload() {
 } //функція preload додає спрайти (поки не додає безпосередньо в гру)
 
 function create() {
-  this.add.image(400, 300, "sky");//додає фон
+  this.add.image(400, 300, "sky"); //додає фон
 
   platforms = this.physics.add.staticGroup();
 
@@ -88,28 +88,28 @@ function create() {
     fontSize: "32px",
     fill: "#000",
   });
- function collectStar(player, star) {
-   star.disableBody(true, true);
+  function collectStar(player, star) {
+    star.disableBody(true, true);
 
-   score += 10;
-   scoreText.setText("Score: " + score);
+    score += 10;
+    scoreText.setText("Score: " + score);
 
-   if (stars.countActive(true) === 0) {
-     stars.children.iterate(function (child) {
-       child.enableBody(true, child.x, 0, true, true);
-     });
+    if (stars.countActive(true) === 0) {
+      stars.children.iterate(function (child) {
+        child.enableBody(true, child.x, 0, true, true);
+      });
 
-     var x =
-       player.x < 400
-         ? Phaser.Math.Between(400, 800)
-         : Phaser.Math.Between(0, 400);
+      var x =
+        player.x < 400
+          ? Phaser.Math.Between(400, 800)
+          : Phaser.Math.Between(0, 400);
 
-     var bomb = bombs.create(x, 16, "bomb");
-     bomb.setBounce(1);
-     bomb.setCollideWorldBounds(true);
-     bomb.setVelocity(Phaser.Math.Between(-200, 200), 20);
-   }
- }
+      var bomb = bombs.create(x, 16, "bomb");
+      bomb.setBounce(1);
+      bomb.setCollideWorldBounds(true);
+      bomb.setVelocity(Phaser.Math.Between(-200, 200), 20);
+    }
+  }
   bombs = this.physics.add.group();
 
   this.physics.add.collider(bombs, platforms);
@@ -121,6 +121,24 @@ function create() {
     player.setTint(0xff0000);
 
     player.anims.play("turn");
+    WinText = this.add.text(250, 150, "Game Over", {
+      fontSize: "60px",
+      fill: "red",
+    });
+    scoreText = this.add.text(250, 250, "score: 0", {
+      fontSize: "40px",
+      fill: "red",
+    });
+    eventText = this.add.text(250, 350, "Press Enter", {
+      fontSize: "40px",
+      fill: "red",
+    });
+    scoreText.setText("Score: " + score);
+    document.addEventListener("keyup", function (event) {
+      if (event.code === "Enter") {
+        window.location.reload();
+      }
+    });
 
     gameOver = true;
   }
