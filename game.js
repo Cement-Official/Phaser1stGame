@@ -38,11 +38,11 @@ function create() {
 
   platforms = this.physics.add.staticGroup();
 
-  platforms.create(400, 568, "ground").setScale(2).refreshBody();
+  platforms.create(400, 568, "ground").setScale(1.6,1).refreshBody();
 
   platforms.create(600, 400, "ground");
   platforms.create(50, 250, "ground");
-  platforms.create(750, 220, "ground");
+  platforms.create(740, 220, "ground");
 
   player = this.physics.add.sprite(100, 450, "dude"); //додає нашого гравця
 
@@ -121,11 +121,11 @@ function create() {
     player.setTint(0xff0000);
 
     player.anims.play("turn");
-    WinText = this.add.text(250, 150, "Game Over", {
+    WinText = this.add.text(230, 150, "Game Over", {
       fontSize: "60px",
       fill: "red",
     });
-    scoreText = this.add.text(250, 250, "score: 0", {
+    scoreText = this.add.text(260, 250, "score: 0", {
       fontSize: "40px",
       fill: "red",
     });
